@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="socket.io/socket.io.js"></script>
+    
+    <title>Web</title>
+</head>
+<body>
+    <div>
+        {{{body}}}
+    </div>
+    
+    
+<div class="container">
+    <h2>Centro de Mensajes</h2>
+    <div class="row justify-content-center">
+        <form onsubmit="return addMessage(this)">
+
+            <div class="mb-3 col-md-6">
+                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" oninput="onInput()">
+              </div>
+              <div class="mb-3 col-md-6"> 
+                <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+                <textarea class="form-control" id="texto" rows="3" oninput="onInput()"></textarea>
+              </div>
+            <input type="submit" value="enviar" id="submit" disabled="true">  
+        </form>
+        <div>
+            <p>Mensajes:</p>
+            <div id="messages"></div>
+        </div>
+    </div>
+</div>
+   
+
+    <script>
+        function onInput(e){
+            let author = document.getElementById('email').value;
+            let message = document.getElementById('texto').value;
+            let disabled = document.getElementById('submit').disabled;
+            if(!(author!==""&&message!=="")){
+                document.getElementById('submit').disabled = true
+            }else{
+                document.getElementById('submit').disabled = false
+            }
+        }
+
+        const socket = io.connect();
+        
+        socket.on('messages', function(data){
+            render(data)
+        })
+        function render(data){
+            var html = data.map(function(elem,index){
+            return(`<div>
+                <strong style="color: blue">${elem.author}</strong> 
+                <span style="color: brown">${elem.time}</span>
+                <em style="color: green">${elem.message}</em>
+                </div>`)
+            }).join(" ");
+            document.getElementById('messages').innerHTML = html
+        }
+
+
+        function addMessage(e){
+        let time = new Date;
+        
+        var mensaje = {
+            author: document.getElementById('email').value,
+            time: time,
+            message: document.getElementById('texto').value
+        }
+        socket.emit('new-message', mensaje);
+        return false
+        }
+
+    
+
+    </script>
+</body>
+</html>

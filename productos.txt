@@ -1,0 +1,38 @@
+[
+	{
+		"id": 0,
+		"title": "computadora",
+		"price": 12345,
+		"thumbnail": "https://cdn4.iconfinder.com/data/icons/creative-process-16/512/Logo_Design-256.png"
+	},
+	{
+		"id": 1,
+		"title": "monitor",
+		"price": 12000,
+		"thumbnail": "https://cdn4.iconfinder.com/data/icons/basic-office-1/300/computer-256.png"
+	},
+	{
+		"id": 2,
+		"title": "mouse",
+		"price": 900,
+		"thumbnail": "https://cdn1.iconfinder.com/data/icons/technology-and-hardware-2/200/vector_66_07-256.png"
+	},
+	{
+		"id": 3,
+		"title": "router",
+		"price": 1200,
+		"thumbnail": "https://cdn4.iconfinder.com/data/icons/STROKE/networking/png/256/access_point.png"
+	},
+	{
+		"id": 4,
+		"title": "phone",
+		"price": 50000,
+		"thumbnail": "https://cdn2.iconfinder.com/data/icons/hot-sale-flat/64/phone_sale_shop-128.png"
+	},
+	{
+		"id": 5,
+		"title": "phone2",
+		"price": 40000,
+		"thumbnail": "https://cdn2.iconfinder.com/data/icons/it-technology/70/phone-256.png"
+	}
+]
